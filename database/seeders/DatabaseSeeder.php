@@ -20,9 +20,11 @@ class DatabaseSeeder extends Seeder
     {
         $statuses = UserStatus::factory(10)->create();
 
-        User::factory(10)->create([
-         'status_id' => $statuses->random()->id
-        ]);
+        foreach ($statuses as $status) {
+            User::factory()->create([
+                'status_id' => $statuses->random()->id
+            ]);
+        }
 
         $specs = Specialization::factory(rand(5,20))->create([]);
 
